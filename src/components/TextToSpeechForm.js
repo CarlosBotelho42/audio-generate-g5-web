@@ -1,50 +1,38 @@
-import { Axios } from 'axios';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function TextToSpeechForm() {
   const [text, setText] = useState('');
-  const [audioUrl, setAudioUrl] = useState(null);
+  const [audioUrl, setAudioUrl] = useState('');
 
-  const handleTextChange = (event) => {
-    setText(event.target.value);
+  const handleTextChange = (e) => {
+    setText(e.target.value);
   };
 
-  const handleConvertText = async () => {
+  const onClick = async () => {
     try {
-      const response = await Axios('https://zfckzj4mz0.execute-api.us-east-1.amazonaws.com/dev/synthesize', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          text,
-          voiceId: 'Thiago' // ou outro ID de voz que queira usar
-        })
+      const response = await axios.post('', {
+        text,
+        engineId: 'neural',
+        languageId: 'pt-BR',
+        voiceId: 'Thiago'
       });
-      const data = await response.json();
-      if (response.ok) {
-        setAudioUrl(data.audioUrl);
-      } else {
-        console.error('Erro ao converter o texto:', data.message);
-      }
+
+      setAudioUrl(response.data.audioUrl);
     } catch (error) {
-      console.error('Erro na solicitação:', error);
+      console.error("Erro na solicitação:", error);
     }
   };
 
   return (
     <div>
-      <h2>Conversor de Texto para Áudio</h2>
-      <textarea
-        rows="4"
-        cols="50"
-        placeholder="Digite o texto para converter em áudio"
-        value={text}
-        onChange={handleTextChange}
-      />
-      <br />
-      <button onClick={handleConvertText}>Converter Texto em Áudio</button>
+      <h2>Converta texto para áudio</h2>
+      <textarea value={text} onChange={handleTextChange} placeholder="Digite o texto aqui" />
+      <button onClick={onClick}>Converter</button>
+
       {audioUrl && (
         <div>
-          <h3>Áudio gerado:</h3>
+          <h3>Seu áudio está pronto:</h3>
           <audio controls src={audioUrl}></audio>
         </div>
       )}
