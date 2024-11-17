@@ -5,30 +5,35 @@ function TextToSpeechForm() {
   const [voiceId, setVoiceId] = useState('Camila'); // Voz brasileira padrão
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [downloadUrl, setDownloadUrl] = useState(''); // URL do áudio gerado
 
-  const onClick = async () => {
+  const onClickGenerate = async () => {
     setSuccessMessage('');
     setErrorMessage('');
+    setDownloadUrl('');
 
     try {
-      const response = await fetch('', {
+      const response = await fetch('https://zfckzj4mz0.execute-api.us-east-1.amazonaws.com/dev/synthesize', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           text: text,
           voiceId: voiceId,
-          engine: 'neural',      
-          languageCode: 'pt-BR'
-        })
+          engine: 'neural',
+          languageCode: 'pt-BR',
+        }),
       });
 
       if (!response.ok) {
         throw new Error('Erro na solicitação');
       }
 
-      setSuccessMessage('Texto convertido com sucesso!');
+      const data = await response.json();
+      console.log('Resposta da API:', data);
+      setDownloadUrl(data.presignedUrl); // A URL Presignada deve vir na resposta
+      setSuccessMessage('Texto convertido com sucesso! Clique no botão para baixar.');
     } catch (error) {
       setErrorMessage('Erro na solicitação: ' + error.message);
     }
@@ -48,17 +53,24 @@ function TextToSpeechForm() {
       <label>
         Escolha uma voz em português brasileiro:
         <select value={voiceId} onChange={(e) => setVoiceId(e.target.value)}>
-          {/* Opções de vozes em pt-BR */}
           <option value="Camila">Camila (feminina)</option>
           <option value="Thiago">Ricardo (masculina)</option>
           <option value="Vitória">Vitória (feminina)</option>
         </select>
       </label>
       <br />
-      <button onClick={onClick}>Converter para Áudio</button>
+      <button onClick={onClickGenerate}>Converter para Áudio</button>
 
       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
+      {downloadUrl && (
+        <div>
+          <a href={downloadUrl} download="audio.mp3">
+            <button>Baixar Áudio</button>
+          </a>
+        </div>
+      )}
     </div>
   );
 }
