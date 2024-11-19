@@ -46,7 +46,7 @@ function TextToSpeechForm() {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Digite o texto para converter em áudio"
-        rows="4"
+        rows="6"
         cols="50"
       />
       <br />
