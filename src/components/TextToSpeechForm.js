@@ -32,7 +32,7 @@ function TextToSpeechForm() {
 
       const data = await response.json();
       console.log('Resposta da API:', data);
-      setDownloadUrl(data.presignedUrl); // A URL Presignada deve vir na resposta
+      setDownloadUrl(data);
       setSuccessMessage('Texto convertido com sucesso! Clique no botão para baixar.');
     } catch (error) {
       setErrorMessage('Erro na solicitação: ' + error.message);

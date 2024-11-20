@@ -72,7 +72,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### AWS PIPELINE
 
-Teste build aws codeBuild 1
-Teste build aws codeBuild 2
-Teste build aws codeBuild 3
-Teste build aws codeBuild 4
+Pipiline funcioando!!!!!!!!!!!
