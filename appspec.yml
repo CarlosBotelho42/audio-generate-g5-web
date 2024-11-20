@@ -5,10 +5,10 @@ files:
     destination: /var/www/html/
     overwrite: true
   - source: build/* 
-    destination: /var/www/html/build/ 
+    destination: /var/www/html/
     overwrite: true
-  - source: scripts/**
-    destination: /var/www/html/scripts/ 
+  - source: /scripts
+    destination: /var/www/html/
     overwrite: true
 hooks:
   BeforeInstall:
