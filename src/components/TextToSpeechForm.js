@@ -41,7 +41,7 @@ function TextToSpeechForm() {
 
   return (
     <div>
-      <h1>Conversor de Texto para Fala</h1>
+      <h1>Conversor de Texto para Fala!</h1>
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
