@@ -1,8 +1,14 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /var/www/html
+  - source: appspec.yml
+    destination: /var/www/html/
+    overwrite: true
+  - source: build/* 
+    destination: /var/www/html/build/ 
+    overwrite: true
+  - source: scripts/**
+    destination: /var/www/html/scripts/ 
     overwrite: true
 hooks:
   BeforeInstall:
@@ -13,3 +19,4 @@ hooks:
     - location: scripts/restart_apache.sh
       timeout: 300
       runas: root
+
