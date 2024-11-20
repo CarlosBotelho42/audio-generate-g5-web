@@ -1,15 +1,9 @@
 version: 0.0
 os: linux
 files:
-  - source: appspec.yml
-    destination: /var/www/html/
-    overwrite: true
-  - source: build/*
-    destination: /var/www/html/
-    overwrite: true
-  - source: scripts/
-    destination: /var/www/html/scripts/
-    overwrite: true
+  - source: /
+    destination: /var/www/html
+     overwrite: true
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
