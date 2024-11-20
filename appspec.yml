@@ -1,13 +1,13 @@
 version: 0.0
 os: linux
 files:
-  - source: appspec.yml
+  - source: /appspec.yml
     destination: /var/www/html/
     overwrite: true
-  - source: build/*
+  - source: /build/*
     destination: /var/www/html/
     overwrite: true  # Garante que os arquivos sejam sobrescritos se já existirem
-  - source: scripts/*
+  - source: /scripts/*
     destination: /var/www/html/scripts/
     overwrite: true
 hooks:
