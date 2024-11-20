@@ -74,3 +74,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 Teste build aws codeBuild 1
 Teste build aws codeBuild 2
+Teste build aws codeBuild 3
