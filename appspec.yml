@@ -4,11 +4,11 @@ files:
   - source: appspec.yml
     destination: /var/www/html/
     overwrite: true
-  - source: build/* 
+  - source: build/*
     destination: /var/www/html/
     overwrite: true
-  - source: /scripts
-    destination: /var/www/html/
+  - source: scripts/
+    destination: /var/www/html/scripts/
     overwrite: true
 hooks:
   BeforeInstall:
@@ -19,4 +19,3 @@ hooks:
     - location: scripts/restart_apache.sh
       timeout: 300
       runas: root
-
