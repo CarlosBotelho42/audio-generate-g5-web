@@ -1,8 +1,9 @@
 version: 0.0
 os: linux
 files:
-  - source: /
+  - source: build/
     destination: /var/www/html
+    overwrite: yes
 hooks:
   BeforeInstall:
     - location: scripts/install_dependencies.sh
