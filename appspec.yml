@@ -1,14 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: /appspec.yml
-    destination: /var/www/html/
-    overwrite: true
-  - source: /build/*
-    destination: /var/www/html/
-    overwrite: true  # Garante que os arquivos sejam sobrescritos se já existirem
-  - source: /scripts/*
-    destination: /var/www/html/scripts/
+  - source: /
+    destination: /var/www/html
     overwrite: true
 hooks:
   BeforeInstall:
@@ -16,6 +10,9 @@ hooks:
       timeout: 300
       runas: root
   AfterInstall:
+  - location: scripts/copy_build_to_html.sh
+      timeout: 300
+      runas: root
     - location: scripts/restart_apache.sh
       timeout: 300
       runas: root
