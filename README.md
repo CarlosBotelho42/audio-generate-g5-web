@@ -74,4 +74,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 Pipiline funcioando!!!!!!!!!!!
 Pipiline bugouuuu!!!!!!!!!!!
-Teste pipeline 1.1
+Teste pipeline 1.2
